@@ -10,7 +10,7 @@ export default {
           name: 'child folder',
           children: [
             { name: 'hello' },
-            { name: 'wat' }
+            { name: 'wat' },
           ]
         },
         { name: 'hello' },
