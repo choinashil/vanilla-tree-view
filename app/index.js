@@ -9,120 +9,96 @@ import TREE_DATA from './data';
 // ================================
 var content = document.querySelector('.content');
 
-// title
-document.querySelector('h1').innerText=TREE_DATA.name;
+document.querySelector('h1').textContent = TREE_DATA.name;
 
 makeList(content, TREE_DATA);
 
-// 초기구조 생성
-function makeList (target, data) {
-
+function makeList(target, data) {
   var ul = document.createElement('ul');
-  ul.className='ul'
+  ul.classList.add = 'ul';
   target.appendChild(ul);
 
-  for(var i=0; i<data.children.length;i++){
-    var li=document.createElement('li');
-    li.className='li';
-    li.innerText=data.children[i].name;
+  for (var i = 0; i < data.children.length; i++) {
+    var li = document.createElement('li');
+    li.classList.add = 'li';
+    li.textContent = data.children[i].name;
     ul.appendChild(li);
+    li.addEventListener('dblclick', changeToFolder.bind(null, data.children[i]));
 
-    // 더블클릭하면 파일->폴더 변경
-    li.addEventListener('dblclick', changeToFolder.bind(li, data.children[i]));
-
-    if(data.children[i].children){
-      // 폴더 펼침 버튼 만들기 [+][-]
-      var span= document.createElement('span');
-      span.innerText=' [-]';
+    if (data.children[i].children) {
+      var span = document.createElement('span');
+      span.textContent = ' [-]';
       li.appendChild(span);
-      // 자식요소 생성
+
       makeList(li, data.children[i]);
     }
   }
 
-  // 폴더마다 제일 밑에 +버튼 만들고, 클릭하면 폴더내 li 추가
-  if(li.childNodes){
-    var li=document.createElement('li');
-    li.className='plus';
-    li.innerText='+';
+  if (li.childNodes) {
+    var li = document.createElement('li');
+    li.classList.add = 'plus';
+    li.textContent = '+';
     ul.appendChild(li);
-
-    li.addEventListener('click', addFile.bind(ul, data));
+    li.addEventListener('click', addFile.bind(null, data));
   }
 }
 
-// addFile
-function addFile(data, e){
-  var li=document.createElement('li');
-  li.className='li';
+function addFile(data, e) {
+  var li = document.createElement('li');
+  li.classList.add = 'li';
   var child = {name: 'new stuff'};
   data.children.push(child);
-  li.innerText=child.name;
+  li.textContent = child.name;
+  li.addEventListener('dblclick', changeToFolder.bind(null, child));
 
-  li.addEventListener('dblclick', changeToFolder.bind(li, child));
-  this.insertBefore(li, this.lastChild);
-
-  console.log(TREE_DATA);
+  e.target.parentElement.insertBefore(li, e.target.parentElement.lastChild);
 }
 
-
-function changeToFolder(data, e){
+function changeToFolder(data, e) {
   e.stopPropagation();
 
-  // console.log(this);
-  var clickedli=this;
+  var clickedli = e.target;
 
-  // 파일일때만 폴더로 변경가능
-  if(data.children){
-    foldToggle.call(clickedli);
+  if (data.children) {
+    toggleFolder.call(clickedli);
     return;
-  }else{
-    data.children=[];
+  } else {
+    data.children = [];
   }
 
-  var newFolder = e.target;
-
   var span = document.createElement('span');
-  span.innerText=' [-]';
-  newFolder.appendChild(span);
+  span.textContent = ' [-]';
+  clickedli.appendChild(span);
 
   var ul = document.createElement('ul');
-  ul.className='ul';
-  newFolder.appendChild(ul);
+  ul.classList.add = 'ul';
+  clickedli.appendChild(ul);
 
-  var li=document.createElement('li');
-  li.className='li';
+  var li = document.createElement('li');
+  li.classList.add = 'li';
   var child = {name: 'new stuff'};
   data.children.push(child);
 
-  li.innerText=child.name;
-  li.addEventListener('dblclick', changeToFolder.bind(li, child));
-
+  li.textContent = child.name;
   ul.appendChild(li);
+  li.addEventListener('dblclick', changeToFolder.bind(null, child));
 
-  // 폴더마다 제일 밑에 +버튼 만들고, 클릭하면 폴더내 li 추가
-  var li=document.createElement('li');
-  li.className='plus';
-  li.innerText='+';
+  var li = document.createElement('li');
+  li.classList.add = 'plus';
+  li.textContent = '+';
   ul.appendChild(li);
-  li.addEventListener('click', addFile.bind(ul, data));
-
-  console.log(TREE_DATA);
+  li.addEventListener('click', addFile.bind(null, data));
 }
 
-// 폴더 접었다 폈다
-function foldToggle(){
-  if(this.childNodes[2].style.display === 'none'){
-    this.childNodes[1].innerText = ' [-]';
+function toggleFolder() {
+  if (this.childNodes[2].style.display === 'none') {
+    this.childNodes[1].textContent = ' [-]';
     this.childNodes[2].style.display = 'block';
-  }else{
-    this.childNodes[1].innerText = ' [+]';
+  } else {
+    this.childNodes[1].textContent = ' [+]';
     this.childNodes[2].style.display = 'none';
   }
 }
-
-console.log(TREE_DATA);
-
 
 /* DO NOT REMOVE */
 module.hot.accept();
