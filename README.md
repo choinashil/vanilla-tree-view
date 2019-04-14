@@ -2,7 +2,7 @@
 
 폴더/파일 구조를 HTML5, CSS3, Vanilla Javascript로 표현한 간단한 어플리케이션입니다.
 
-<img src="./tree-view.gif" height="350px" alt="example">
+<img src="./tree-view.gif" height="400px" alt="example">
 
 ## Setup
 
