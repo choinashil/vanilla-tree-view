@@ -1,4 +1,4 @@
-# Tree View
+# Vanilla-tree-view
 
 폴더/파일 구조를 HTML5, CSS3, Vanilla Javascript로 표현한 간단한 어플리케이션입니다.
 
@@ -26,7 +26,7 @@ $ yarn dev (or npm run dev)
 3. 버튼을 클릭하면 하위 파일이 생성됩니다.
 4. 파일을 더블 클릭할 경우, 폴더로 변경됩니다.
 
-## Challenge & Things to do 
+## Challenges & Things to do 
 
 - CSS 디자인 수정
 - Closure 공부
