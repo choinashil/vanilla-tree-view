@@ -2,7 +2,7 @@
 
 폴더/파일 구조를 HTML5, CSS3, Vanilla Javascript로 표현한 간단한 어플리케이션입니다.
 
-<img src="./tree-view.gif" heigth="500px" alt="example">
+<img src="./tree-view.gif" height="350px" alt="example">
 
 ## Setup
 
@@ -28,6 +28,6 @@ $ yarn dev (or npm run dev)
 
 ## Challenge & Things to do 
 
-- CSS 디자인
+- CSS 디자인 수정
 - Closure 공부
-- 재귀에 대한 이해
+- Recursion에 대한 이해
